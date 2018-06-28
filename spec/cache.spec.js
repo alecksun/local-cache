@@ -103,6 +103,20 @@ describe('cache', () => {
             expect(cache.size).toBe(4);
             done();
         }, 1500);
+    });
 
+    fit('clean cache', (done) => {
+        const cache = new Cache(5);
+        cache.set('1', '1');
+        cache.set('2', '2', 1);
+        cache.set('3', '3', 1);
+        cache.set('4', '4', 1);
+        cache.set('5', '5');
+
+        setTimeout(() => {
+            cache.clean(2);
+            expect(cache.size).toBe(3);
+            done();
+        }, 1500);
     });
 });
