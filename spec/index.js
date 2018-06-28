@@ -11,7 +11,7 @@ const reporter = new JasmineConsoleReporter({
 });
 jasmine.addReporter(reporter);
 
-jasmine.loadConfigFile('test/support/jasmine.json');
+jasmine.loadConfigFile('spec/support/jasmine.json');
 
 jasmine.DEFAULT_TIMEOUT_INTERVAL = 2000;
 jasmine.jasmine.DEFAULT_TIMEOUT_INTERVAL = 2000;

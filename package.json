@@ -4,7 +4,7 @@
   "description": "local cache for node.js",
   "main": "index.js",
   "scripts": {
-    "test": "jasmine ./test"
+    "test": "jasmine"
   },
   "repository": {
     "type": "git",

@@ -78,18 +78,31 @@ describe('cache', () => {
         expect(cache.get('6')).toBe('6');
     });
 
-    it('get after cache expire', () => {
+    it('get after cache expire', (done) => {
         const cache = new Cache(5);
         cache.set('1', '1');
         cache.set('2', '2');
-        cache.set('3', '3', -1);
+        cache.set('3', '3', 1);
         cache.set('4', '4', 20);
         cache.set('5', '5');
 
-        expect(cache.get('1')).toBe('1');
-        expect(cache.get('2')).toBe('2');
-        expect(cache.get('3')).toBe(undefined);
-        expect(cache.get('4')).toBe('4');
-        expect(cache.get('5')).toBe('5');
+        setTimeout(() => {
+            expect(cache.get('1')).toBe('1');
+            expect(cache.get('2')).toBe('2');
+            expect(cache.get('3')).toBe('3');
+            expect(cache.get('4')).toBe('4');
+            expect(cache.get('5')).toBe('5');
+        }, 500);
+
+        setTimeout(() => {
+            expect(cache.get('1')).toBe('1');
+            expect(cache.get('2')).toBe('2');
+            expect(cache.get('3')).toBe(undefined);
+            expect(cache.get('4')).toBe('4');
+            expect(cache.get('5')).toBe('5');
+            expect(cache.size).toBe(4);
+            done();
+        }, 1500);
+
     });
 });
